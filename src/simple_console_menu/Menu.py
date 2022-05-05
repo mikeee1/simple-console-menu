@@ -60,4 +60,7 @@ def SimpleConsoleMenu(menuName,menuItems,autoAddQuit = False,onlyReturnNumber = 
     if int(choose) == menuNumber-1:
         quit()
     else:
-        return choose
+        if onlyReturnNumber:
+            return int(choose)
+        else:
+            return choose
