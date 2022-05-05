@@ -12,15 +12,18 @@ from simple_console_menu import Menu
 
 And if you want to use it you can do this:
 ```python
-Menu.SimpleConsoleMenu(menuName,menuItems,autoAddQuit,onlyReturnNumber)
+menu = Menu.SimpleConsoleMenu(menuName,menuItems,inputQuestion,autoAddQuit,onlyReturnNumber, allowedCharacters = '', acceptedQuitCharacters = '')
 ```
 
 With these parameters :
 
-    menuName - Required : name of the menu (Str)
-    menuItems - Required : menu items, separated with ';' (Str)
-    autoAddQuit - Optional : automatically add a quit option (Bool)
-    onlyReturnNumber - Optional : only numbers are allowed to return (Bool)
+    menuName               - Required : name of the menu (Str)
+    menuItems              - Required : menu items, separated with ';' (Str)
+    inputQuestion          - Required : Question input (Str)
+    autoAddQuit            - Optional : automatically add a quit option (Bool)
+    onlyReturnNumber       - Optional : only numbers are allowed to return (Bool)
+    allowedCharacters      - Optional  : specifier which character(s) are allowed if onlyReturnNumber is False, separated with ';' (str)
+    acceptedQuitCharacters - Optional  : specifier which character is allowed if onlyReturnNumber is False for quit (str)
 
 full example:
 ```python
