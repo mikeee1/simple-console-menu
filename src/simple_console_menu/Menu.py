@@ -34,7 +34,7 @@ def SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize = 76,autoAddQuit
         print(int(menuNameLength)*'-',menuName,int(menuNameLength)*'-')
     else:
         #uneven
-        menuNameLength1 = round(menuNameLength)
+        menuNameLength1 = math.ceil(menuNameLength)
         menuNameLength2 = int(math.floor(menuNameLength))
         print(int(menuNameLength1)*'-',menuName,int(menuNameLength2)*'-')
     for x in menuItemsList:
@@ -60,8 +60,8 @@ def SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize = 76,autoAddQuit
                 print(int(menuNameLength)*'-',menuName,int(menuNameLength)*'-')
             else:
                 #uneven
-                menuNameLength1 = round(menuNameLength)
-                menuNameLength2 = int(math.ceil(menuNameLength))
+                menuNameLength1 = math.ceil(menuNameLength)
+                menuNameLength2 = int(math.floor(menuNameLength))
                 print(int(menuNameLength1)*'-',menuName,int(menuNameLength2)*'-')
             for x in menuItemsList:
                 print(f'{menuNumber}. {x}')
@@ -115,7 +115,7 @@ def SimpleConsoleMenuBlock(menuName,menuItems,inputQuestion,menuSize = 76,autoAd
     if (menuNameLength % 2) == 0:
         print('╭'+int(menuNameLength-1)*'─',menuName,int(menuNameLength-1)*'─'+'╮')
     else:
-        menuNameLength1 = round(menuNameLength)
+        menuNameLength1 = math.ceil(menuNameLength)
         menuNameLength2 = int(math.floor(menuNameLength))
         print('╭'+int(menuNameLength1-1)*'─',menuName,int(menuNameLength2-1)*'─'+'╮')
     for x in menuItemsList:
@@ -140,8 +140,8 @@ def SimpleConsoleMenuBlock(menuName,menuItems,inputQuestion,menuSize = 76,autoAd
             if (menuNameLength % 2) == 0:
                 print(int(menuNameLength)*'-',menuName,int(menuNameLength)*'-')
             else:
-                menuNameLength1 = round(menuNameLength)
-                menuNameLength2 = int(math.ceil(menuNameLength))
+                menuNameLength1 = math.ceil(menuNameLength)
+                menuNameLength2 = int(math.floor(menuNameLength))
                 print(int(menuNameLength1)*'-',menuName,int(menuNameLength2)*'-')
             for x in menuItemsList:
                 print(f'{menuNumber}. {x}')
@@ -162,7 +162,7 @@ def SimpleConsoleMenuBlock(menuName,menuItems,inputQuestion,menuSize = 76,autoAd
         else:
             return choose
 
-# print(SimpleConsoleMenuBlock('menu','item1;item2;item3;item4;item5','Number:',20,True,True))
+# print(SimpleConsoleMenuBlock('menuuuuuuuuuuuuu','item1;item2;item3;item4;item5','Number:',20,True,True))
 
 # ╭─────────────╮
 # │    lorem    │

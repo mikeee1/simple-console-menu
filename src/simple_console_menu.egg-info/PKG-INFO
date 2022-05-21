@@ -1,13 +1,11 @@
 Metadata-Version: 2.1
 Name: simple-console-menu
-Version: 0.0.10
+Version: 0.1.0
 Summary: A simple console menu
 Home-page: https://github.com/mikeee1/simple-console-menu
 Author: mikeee
 Author-email: mikevansmaalen@gmail.com
-License: UNKNOWN
 Project-URL: Bug Tracker, https://github.com/mikeee1/simple-console-menu
-Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
@@ -29,7 +27,7 @@ from simple_console_menu import Menu
 
 And if you want to use it you can do this:
 ```python
-menu = Menu.SimpleConsoleMenu(menuName,menuItems,inputQuestion,autoAddQuit,onlyReturnNumber, allowedCharacters = '', acceptedQuitCharacters = '')
+menu = Menu.SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize,autoAddQuit,onlyReturnNumber, allowedCharacters = '', acceptedQuitCharacters = '')
 ```
 
 With these parameters :
@@ -80,13 +78,12 @@ There is also `SimpleConsoleMenuBlock` which works the same as `SimpleConsoleMen
 
 ```
 ╭────────────────────────────────── menu ──────────────────────────────────╮
-│1. item1                                                          │
-│2. item2                                                          │
-│3. item3                                                          │
-│4. item4                                                          │
-│5. item5                                                          │
-│6. Quit                                                           │
+│1. item1                                                           │
+│2. item2                                                           │
+│3. item3                                                           │
+│4. item4                                                           │
+│5. item5                                                           │
+│6. Quit                                                            │
 ╰──────────────────────────────────────────────────────────────────────────╯
 Number:
 ```
-
