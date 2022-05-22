@@ -12,14 +12,14 @@ from simple_console_menu import Menu
 
 And if you want to use it you can do this:
 ```python
-menu = Menu.SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize,autoAddQuit,onlyReturnNumber, allowedCharacters = '', acceptedQuitCharacters = '')
+menu = Menu.SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize,autoAddQuit,onlyReturnNumber, allowedCharacters, acceptedQuitCharacters)
 ```
 
 With these parameters :
 
     menuName               - Required : name of the menu (Str)
-    menuItems              - Required : menu items, separated with ';' (Str)
-    inputQuestion          - Required : Question input (Str)
+    menuItems              - Required : menu items ["item 1","item 2"] (List)
+    inputQuestion          - Optional : Question input (Str)
     menuSize               - Optional : Size of the menu (Int)
     autoAddQuit            - Optional : automatically add a quit option (Bool)
     onlyReturnNumber       - Optional : only numbers are allowed to return (Bool)
@@ -30,7 +30,7 @@ full example:
 ```python
 from simple_console_menu import Menu
 
-menuNumber = Menu.SimpleConsoleMenu('menu','item1;item2;item3;item4;item5',"Number:",76,True)
+menuNumber = Menu.SimpleConsoleMenu('menu',["item1","item2","item3","item4","item5"],"Number:",76,True)
 
 if menuNumber == 1:
     print('item1')
@@ -72,3 +72,4 @@ There is also `SimpleConsoleMenuBlock` which works the same as `SimpleConsoleMen
 ╰──────────────────────────────────────────────────────────────────────────╯
 Number:
 ```
+<sub>it looks correct in the python console</sub>

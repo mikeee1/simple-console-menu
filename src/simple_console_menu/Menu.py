@@ -1,14 +1,14 @@
 import math
 
 
-def SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize = 76,autoAddQuit = False,onlyReturnNumber = True, allowedCharacters = '', acceptedQuitCharacters = ''):
+def SimpleConsoleMenu(menuName,menuItems,inputQuestion = "What do you want to do:",menuSize = 76,autoAddQuit = False,onlyReturnNumber = True, allowedCharacters = '', acceptedQuitCharacters = ''):
     """
     Makes a menu
 
     parameters:
         menuName               - Required  : name of the menu (Str)
-        menuItems              - Required  : menu items, separated with ';' (Str)
-        inputQuestion          - Required  : Question input (Str)
+        menuItems              - Required  : menu items ["item 1","item 2"] (List)
+        inputQuestion          - Optional  : Question input (Str)
         menuSize               - Optional  : Size of the menu (Int)
         autoAddQuit            - Optional  : automatically add a quit option (Bool)
         onlyReturnNumber       - Optional  : only numbers are allowed to return (Bool)
@@ -19,7 +19,10 @@ def SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize = 76,autoAddQuit
     chooseLoop = True
     menuItemsList = []
     allowedCharactersList = []
-    menuItemsList = str(menuItems).split(';')
+    if isinstance(menuItems, str):
+        menuItemsList = str(menuItems).split(';')
+    else:
+        menuItemsList = menuItems
     if allowedCharacters != '':
         allowedCharactersList = str(allowedCharacters).split(';')
     if autoAddQuit:
@@ -84,14 +87,14 @@ def SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize = 76,autoAddQuit
             return choose
 
 
-def SimpleConsoleMenuBlock(menuName,menuItems,inputQuestion,menuSize = 76,autoAddQuit = False,onlyReturnNumber = True, allowedCharacters = '', acceptedQuitCharacters = ''):
+def SimpleConsoleMenuBlock(menuName,menuItems,inputQuestion = "What do you want to do:",menuSize = 76,autoAddQuit = False,onlyReturnNumber = True, allowedCharacters = '', acceptedQuitCharacters = ''):
     """
     Makes a menu with a box arround it
 
     parameters:
         menuName               - Required  : name of the menu (Str)
-        menuItems              - Required  : menu items, separated with ';' (Str)
-        inputQuestion          - Required  : Question input (Str)
+        menuItems              - Required  : menu items ["item 1","item 2"] (List)
+        inputQuestion          - Optional  : Question input (Str)
         menuSize               - Optional  : Size of the menu (Int)
         autoAddQuit            - Optional  : automatically add a quit option (Bool)
         onlyReturnNumber       - Optional  : only numbers are allowed to return (Bool)
@@ -102,7 +105,10 @@ def SimpleConsoleMenuBlock(menuName,menuItems,inputQuestion,menuSize = 76,autoAd
     chooseLoop = True
     menuItemsList = []
     allowedCharactersList = []
-    menuItemsList = str(menuItems).split(';')
+    if isinstance(menuItems, str):
+        menuItemsList = str(menuItems).split(';')
+    else:
+        menuItemsList = menuItems
     if allowedCharacters != '':
         allowedCharactersList = str(allowedCharacters).split(';')
     if autoAddQuit:
@@ -162,7 +168,7 @@ def SimpleConsoleMenuBlock(menuName,menuItems,inputQuestion,menuSize = 76,autoAd
         else:
             return choose
 
-# print(SimpleConsoleMenuBlock('menuuuuuuuuuuuuu','item1;item2;item3;item4;item5','Number:',20,True,True))
+# print(SimpleConsoleMenuBlock('menu',["item1","item2","item3"],'Number:',20,True,True))
 
 # ╭─────────────╮
 # │    lorem    │
