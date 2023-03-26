@@ -1,0 +1,8 @@
+dist/
+old_dist/
+python_venv/
+**/test.py
+src/simple_console_menu.egg-info/
+**/__pycache__/
+html/
+md/
