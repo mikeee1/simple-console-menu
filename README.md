@@ -1,5 +1,7 @@
 # Simple Consol Menu
-this module allows you to create simple console menu.
+this module allows you to create simple console menu. <br>
+[![](https://img.shields.io/pypi/dm/simple-console-menu)](
+https://pypi.org/project/simple-console-menu/)
 
 ## links
 [Source](https://github.com/mikeee1/simple-console-menu) <br>

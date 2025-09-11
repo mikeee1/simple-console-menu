@@ -215,12 +215,12 @@ class menu:
 def SimpleConsoleMenu(menuName:str,menuItems:list,inputQuestion = "What do you want to do:",menuSize = 76,autoAddQuit = False,onlyReturnNumber = True, allowedCharacters = '', acceptedQuitCharacters = '', suppress_deprecation_warning = False) -> int | str:
     if not suppress_deprecation_warning:
         print("The SimpleConsoleMenu is deprecated, if you wish to continue using it, import it from the old module: 'from simple_console_menu import Menu_old'")
-    Menu_old.SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize,autoAddQuit,onlyReturnNumber,allowedCharacters,acceptedQuitCharacters)
+    return Menu_old.SimpleConsoleMenu(menuName,menuItems,inputQuestion,menuSize,autoAddQuit,onlyReturnNumber,allowedCharacters,acceptedQuitCharacters)
     
     # raise DeprecationWarning("The SimpleConsoleMenu function is deprecated, if you wish to continue using it, import it from the old module: 'from simple_console_menu import Menu_old'")
 
 def SimpleConsoleMenuBlock(menuName:str,menuItems:list,inputQuestion = "What do you want to do:",menuSize = 76,autoAddQuit = False,onlyReturnNumber = True, allowedCharacters = '', acceptedQuitCharacters = '', suppress_deprecation_warning = False) -> int | str:
     if not suppress_deprecation_warning:
         print("The SimpleConsoleMenuBlock is deprecated, if you wish to continue using it, import it from the old module: 'from simple_console_menu import Menu_old'")
-    Menu_old.SimpleConsoleMenuBlock(menuName,menuItems,inputQuestion,menuSize,autoAddQuit,onlyReturnNumber,allowedCharacters,acceptedQuitCharacters)
+    return Menu_old.SimpleConsoleMenuBlock(menuName,menuItems,inputQuestion,menuSize,autoAddQuit,onlyReturnNumber,allowedCharacters,acceptedQuitCharacters)
     # raise DeprecationWarning("The SimpleConsoleMenuBlock function is deprecated, if you wish to continue using it, import it from the old module: 'from simple_console_menu import Menu_old'")
