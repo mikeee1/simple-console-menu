@@ -112,6 +112,91 @@ class TestSimpleConsoleMenu:
         
         assert result == 1
 
+    @patch('builtins.input', return_value='1')
+    @patch('builtins.print')
+    def test_return_menu_item_numeric_choice(self, mock_print, mock_input):
+        """Test return_menu_item=True returns the actual menu item text"""
+        result = simple_console_menu(
+            "Test Menu", 
+            ["First Option", "Second Option", "Third Option"],
+            return_menu_item=True
+        )
+        
+        assert result == "First Option"
+
+    @patch('builtins.input', return_value='2')
+    @patch('builtins.print')
+    def test_return_menu_item_second_choice(self, mock_print, mock_input):
+        """Test return_menu_item=True returns correct item for choice 2"""
+        result = simple_console_menu(
+            "Test Menu", 
+            ["Alpha", "Beta", "Gamma"],
+            return_menu_item=True
+        )
+        
+        assert result == "Beta"
+
+    @patch('builtins.input', return_value='5')
+    @patch('builtins.print')
+    def test_return_menu_item_out_of_range(self, mock_print, mock_input):
+        """Test return_menu_item=True raises error for out of range choice"""
+        with pytest.raises(ValueError, match="Choice number out of range"):
+            simple_console_menu(
+                "Test Menu", 
+                ["Option 1", "Option 2"],
+                return_menu_item=True
+            )
+
+    @patch('builtins.input', return_value='0')
+    @patch('builtins.print')
+    def test_return_menu_item_zero_choice(self, mock_print, mock_input):
+        """Test return_menu_item=True raises error for choice 0"""
+        with pytest.raises(ValueError, match="Choice number out of range"):
+            simple_console_menu(
+                "Test Menu", 
+                ["Option 1", "Option 2"],
+                return_menu_item=True
+            )
+
+    @patch('builtins.input', return_value='test')
+    @patch('builtins.print')
+    def test_return_menu_item_string_choice_valid(self, mock_print, mock_input):
+        """Test return_menu_item=True with string choice that matches menu item"""
+        result = simple_console_menu(
+            "Test Menu", 
+            ["test", "other", "option"],
+            only_return_number=False,
+            allowed_characters="test;other;option",
+            return_menu_item=True
+        )
+        
+        assert result == "test"
+
+    @patch('builtins.input', return_value='invalid')
+    @patch('builtins.print')
+    def test_return_menu_item_string_choice_invalid(self, mock_print, mock_input):
+        """Test return_menu_item=True with string choice that doesn't match menu items"""
+        with pytest.raises(ValueError, match="Choice not in menu items"):
+            simple_console_menu(
+                "Test Menu", 
+                ["test", "other", "option"],
+                only_return_number=False,
+                allowed_characters="test;other;option;invalid",
+                return_menu_item=True
+            )
+
+    @patch('builtins.input', return_value='3')
+    @patch('builtins.print')
+    def test_return_menu_item_with_auto_quit(self, mock_print, mock_input):
+        """Test return_menu_item=True with auto_add_quit option"""
+        with pytest.raises(SystemExit):
+            simple_console_menu(
+                "Test Menu", 
+                ["Option 1", "Option 2"],
+                auto_add_quit=True,
+                return_menu_item=True
+            )
+
 
 class TestSimpleConsoleMenuBlock:
     """Test cases for simple_console_menu_block function"""
@@ -184,6 +269,68 @@ class TestSimpleConsoleMenuBlock:
         
         assert result == 1
         # Verify the menu renders without errors
+
+    @patch('builtins.input', return_value='1')
+    @patch('builtins.print')
+    def test_block_menu_return_menu_item(self, mock_print, mock_input):
+        """Test block menu with return_menu_item=True"""
+        result = simple_console_menu_block(
+            "Block Menu", 
+            ["First Choice", "Second Choice"],
+            return_menu_item=True
+        )
+        
+        assert result == "First Choice"
+
+    @patch('builtins.input', return_value='3')
+    @patch('builtins.print')
+    def test_block_menu_return_menu_item_third_choice(self, mock_print, mock_input):
+        """Test block menu return_menu_item=True returns correct item for choice 3"""
+        result = simple_console_menu_block(
+            "Block Menu", 
+            ["Alpha", "Beta", "Gamma", "Delta"],
+            return_menu_item=True
+        )
+        
+        assert result == "Gamma"
+
+    @patch('builtins.input', return_value='10')
+    @patch('builtins.print')
+    def test_block_menu_return_menu_item_out_of_range(self, mock_print, mock_input):
+        """Test block menu return_menu_item=True raises error for out of range choice"""
+        with pytest.raises(ValueError, match="Choice number out of range"):
+            simple_console_menu_block(
+                "Block Menu", 
+                ["Option 1", "Option 2"],
+                return_menu_item=True
+            )
+
+    @patch('builtins.input', return_value='custom')
+    @patch('builtins.print')
+    def test_block_menu_return_menu_item_string_choice(self, mock_print, mock_input):
+        """Test block menu return_menu_item=True with string choice"""
+        result = simple_console_menu_block(
+            "Block Menu", 
+            ["custom", "menu", "items"],
+            only_return_number=False,
+            allowed_characters="custom;menu;items",
+            return_menu_item=True
+        )
+        
+        assert result == "custom"
+
+    @patch('builtins.input', return_value='notfound')
+    @patch('builtins.print')
+    def test_block_menu_return_menu_item_invalid_string(self, mock_print, mock_input):
+        """Test block menu return_menu_item=True with invalid string choice"""
+        with pytest.raises(ValueError, match="Choice not in menu items"):
+            simple_console_menu_block(
+                "Block Menu", 
+                ["valid", "options", "only"],
+                only_return_number=False,
+                allowed_characters="valid;options;only;notfound",
+                return_menu_item=True
+            )
 
 
 class TestMenuComparison:
