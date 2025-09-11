@@ -40,12 +40,12 @@ class menu:
 
 
     def __init__(self, 
-                menu_name:str, 
-                menu_items:list, 
-                input_question:str = "What do you want to do:", 
-                menu_size:int = 76, 
-                auto_add_quit:bool = False,
-                return_type:menu_data_type = menu_data_type.INT) -> None:
+                menu_name: str, 
+                menu_items: list, 
+                input_question: str = "What do you want to do:", 
+                menu_size: int = 76, 
+                auto_add_quit: bool = False,
+                return_type: menu_data_type = menu_data_type.INT) -> None:
         """
         allows you to create a menu
         :param menu_name: name of the menu (Str)
@@ -73,63 +73,70 @@ class menu:
                 to_return += f"{k}: {v}, "
         return to_return[:-2]
 
-    def set_menu_name(self, menu_name:str) -> None:
+    def set_menu_name(self, menu_name: str) -> "menu":
         """
         sets the menu name
         :param menu_name: name of the menu (Str)
         :return: None
         """
         self.menu_name = menu_name
+        return self
 
-    def set_menu_items(self, menu_items:list) -> None:
+    def set_menu_items(self, menu_items: list) -> "menu":
         """
         sets the menu items
         :param menu_items: menu items ["item 1","item 2"] (List)
         :return: None
         """
         self.menu_items = menu_items
-        
-    def add_menu_item(self, menu_item:str) -> None:
+        return self
+
+    def add_menu_item(self, menu_item: str) -> "menu":
         """
         adds a menu item
         :param menu_item: menu item to add (Str)
         :return: None
         """
         self.menu_items.append(menu_item)
+        return self
 
-    def set_input_question(self, input_question:str) -> None:
+    def set_input_question(self, input_question: str) -> "menu":
         """
         sets the input question
         :param input_question: question to ask the user (Str)
         :return: None
         """
         self.input_question = input_question
+        return self
 
-    def set_menu_size(self, menu_size:int) -> None:
+    def set_menu_size(self, menu_size: int) -> "menu":
         """
         sets the menu size
         :param menu_size: size of the menu (Int)
         :return: None
         """
         self.menu_size = menu_size
+        return self
 
-    def set_auto_add_quit(self, auto_add_quit:bool) -> None:
+    def set_auto_add_quit(self, auto_add_quit: bool) -> "menu":
         """
         sets the auto add quit option
         :param auto_add_quit: automatically add a quit option (Bool)
         :return: None
         """
         self.auto_add_quit = auto_add_quit
-    
-    def set_return_type(self, return_type:menu_data_type) -> None:
+        return self
+
+    def set_return_type(self, return_type: menu_data_type) -> "menu":
         """
         sets the return type
         :param return_type: return type (menu_data_type)
         :return: None
         """
         self.return_type = return_type
+        return self
 
-    def display(self, menu_display_type:display_type = display_type.BLOCK) -> None:
+    def display(self, menu_display_type: display_type = display_type.BLOCK) -> "menu":
         """
         displays the menu
         :return: None
@@ -197,6 +204,8 @@ class menu:
             elif self.return_type == self.menu_data_type.STRING:
                 break
 
+        return self
+
     def get_user_input(self) -> str | int | float:
         """
         returns the user input
@@ -209,6 +218,25 @@ class menu:
             raise ValueToReturnEmptyError("Value to return is empty")
 
 
+
+def _print_top_row(menu_name: str, menu_name_length: float, menu_size: int) -> None:
+    """
+    Generates the top row of the menu
+    :param menu_name: The name of the menu
+    :param menu_size: The size of the menu
+    :return: The top row of the menu
+    """
+    if menu_name:
+        if (menu_name_length % 2) == 0:
+            #even
+            print(int(menu_name_length) * '-', menu_name, int(menu_name_length) * '-')
+        else:
+            #uneven
+            menu_name_length1 = math.ceil(menu_name_length)
+            menu_name_length2 = int(math.floor(menu_name_length))
+            print(int(menu_name_length1) * '-', menu_name, int(menu_name_length2) * '-')
+    else:
+        print(menu_size * '-')
 
 def simple_console_menu(menu_name: str, menu_items: list[str], input_question: str = "What do you want to do:", menu_size: int = 76, auto_add_quit: bool = False, only_return_number: bool = True, allowed_characters: list[str] | str | None = None, accepted_quit_characters: str = '', return_menu_item: bool = False) -> int | str:
     """
@@ -223,6 +251,7 @@ def simple_console_menu(menu_name: str, menu_items: list[str], input_question: s
         only_return_number       - Optional  : only numbers are allowed to return (Bool)
         allowed_characters       - Optional  : specifier which character(s) are allowed if only_return_number is False, separated with ';' (str)
         accepted_quit_characters - Optional  : specifier which character is allowed if only_return_number is False for quit (str)
+        return_menu_item         - Optional  : return the menu item instead of the number (Bool)
 
     """
     choose_loop = True
@@ -245,24 +274,18 @@ def simple_console_menu(menu_name: str, menu_items: list[str], input_question: s
         menu_items_list.append('Quit')
     menu_number = 1
     choose_amount = 0
+    
     menu_name_length = len(menu_name) + 2
     menu_name_length = menu_size - menu_name_length
     menu_name_length /= 2
 
-    if (menu_name_length % 2) == 0:
-        #even
-        print(int(menu_name_length) * '-', menu_name, int(menu_name_length) * '-')
-    else:
-        #uneven
-        menu_name_length1 = math.ceil(menu_name_length)
-        menu_name_length2 = int(math.floor(menu_name_length))
-        print(int(menu_name_length1) * '-', menu_name, int(menu_name_length2) * '-')
+    _print_top_row(menu_name, menu_name_length, menu_size)
 
     for x in menu_items_list:
         print(f'{menu_number}. {x}')
         menu_number += 1
     print(menu_size * '-')
-    
+
     while choose_loop:
         choose = input(input_question)
         if only_return_number:
@@ -277,14 +300,9 @@ def simple_console_menu(menu_name: str, menu_items: list[str], input_question: s
 
         if choose_amount >= 20 and choose_loop:
             menu_number = 1
-            if (menu_name_length % 2) == 0:
-                #even
-                print(int(menu_name_length)*'-', menu_name, int(menu_name_length)*'-')
-            else:
-                #uneven
-                menu_name_length1 = math.ceil(menu_name_length)
-                menu_name_length2 = int(math.floor(menu_name_length))
-                print(int(menu_name_length1)*'-', menu_name, int(menu_name_length2)*'-')
+
+            _print_top_row(menu_name, menu_name_length, menu_size)
+
             for x in menu_items_list:
                 print(f'{menu_number}. {x}')
                 menu_number += 1
@@ -320,6 +338,26 @@ def simple_console_menu(menu_name: str, menu_items: list[str], input_question: s
             return choose
 
 
+def _print_top_row_block(menu_name: str, menu_name_length: float, menu_size: int) -> None:
+    """
+    Generates the top row of the menu with a block
+    :param menu_name: The name of the menu
+    :param menu_size: The size of the menu
+    :return: The top row of the menu
+    """
+    if menu_name:
+        if (menu_name_length % 2) == 0:
+            #even
+            print('╭' + int(menu_name_length-1) * '─', menu_name, int(menu_name_length-1) * '─' + '╮')
+        else:
+            #uneven
+            menu_name_length1 = math.ceil(menu_name_length)
+            menu_name_length2 = int(math.floor(menu_name_length))
+            print('╭' + int(menu_name_length1-1) * '─', menu_name, int(menu_name_length2-1) * '─' + '╮')
+    else:
+        print('╭' + (menu_size - 2) * '─' + '╮')
+
+
 def simple_console_menu_block(menu_name: str, menu_items: list[str], input_question: str = "What do you want to do:", menu_size: int = 76, auto_add_quit: bool = False, only_return_number: bool = True, allowed_characters: list[str] | str | None = None, accepted_quit_characters: str = '', return_menu_item: bool = False) -> int | str:
     """
     Makes a menu with a box arround it
@@ -333,6 +371,7 @@ def simple_console_menu_block(menu_name: str, menu_items: list[str], input_quest
         only_return_number       - Optional  : only numbers are allowed to return (Bool)
         allowed_characters       - Optional  : specifier which character(s) are allowed if only_return_number is False, separated with ';' (str)
         accepted_quit_characters - Optional  : specifier which character is allowed if only_return_number is False for quit (str)
+        return_menu_item         - Optional  : return the menu item instead of the number (Bool)
 
     """
     choose_loop = True
@@ -361,12 +400,7 @@ def simple_console_menu_block(menu_name: str, menu_items: list[str], input_quest
     menu_name_length = menu_size - menu_name_length
     menu_name_length /= 2
 
-    if (menu_name_length % 2) == 0:
-        print('╭' + int(menu_name_length-1) * '─', menu_name, int(menu_name_length-1) * '─' + '╮')
-    else:
-        menu_name_length1 = math.ceil(menu_name_length)
-        menu_name_length2 = int(math.floor(menu_name_length))
-        print('╭' + int(menu_name_length1-1) * '─', menu_name, int(menu_name_length2-1) * '─' + '╮')
+    _print_top_row_block(menu_name, menu_name_length, menu_size)
     
     for x in menu_items_list:
         menu_items_with_numbers = str(menu_number)+'. '+x
@@ -388,12 +422,9 @@ def simple_console_menu_block(menu_name: str, menu_items: list[str], input_quest
 
         if choose_amount >= 20 and choose_loop:
             menu_number = 1
-            if (menu_name_length % 2) == 0:
-                print(int(menu_name_length) * '-', menu_name, int(menu_name_length) * '-')
-            else:
-                menu_name_length1 = math.ceil(menu_name_length)
-                menu_name_length2 = int(math.floor(menu_name_length))
-                print(int(menu_name_length1) * '-', menu_name, int(menu_name_length2) * '-')
+
+            _print_top_row_block(menu_name, menu_name_length, menu_size)
+
             for x in menu_items_list:
                 print(f'{menu_number}. {x}')
                 menu_number += 1
@@ -445,7 +476,8 @@ def SimpleConsoleMenuBlock(menuName: str, menuItems: list, inputQuestion = "What
 
 
 def main():
-    print(simple_console_menu_block("Test Menu", ["Option 1", "Option 2"], return_menu_item=True))
+    test = menu("Menu", ["item 1", "item 2", "item 3"]).display().get_user_input()
+    print(test)
 
 if __name__ == '__main__':
     main()

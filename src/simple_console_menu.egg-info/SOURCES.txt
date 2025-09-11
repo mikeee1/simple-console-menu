@@ -10,4 +10,4 @@ src/simple_console_menu.egg-info/SOURCES.txt
 src/simple_console_menu.egg-info/dependency_links.txt
 src/simple_console_menu.egg-info/requires.txt
 src/simple_console_menu.egg-info/top_level.txt
-tests/test_simple_menu.py
+tests/test_menu.py
