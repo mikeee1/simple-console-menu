@@ -62,6 +62,19 @@ class TestSimpleConsoleMenu:
             "Test Menu", 
             ["Option 1"], 
             only_return_number=False,
+            allowed_characters=["a", "b", "c"]
+        )
+        
+        assert result == "a"
+
+    @patch('builtins.input', return_value='a')
+    @patch('builtins.print')
+    def test_string_input_when_allowed_string(self, mock_print, mock_input):
+        """Test string input when only_return_number is False"""
+        result = simple_console_menu(
+            "Test Menu", 
+            ["Option 1"], 
+            only_return_number=False,
             allowed_characters="a;b;c"
         )
         
@@ -308,6 +321,20 @@ class TestSimpleConsoleMenuBlock:
     @patch('builtins.input', return_value='custom')
     @patch('builtins.print')
     def test_block_menu_return_menu_item_string_choice(self, mock_print, mock_input):
+        """Test block menu return_menu_item=True with string choice"""
+        result = simple_console_menu_block(
+            "Block Menu", 
+            ["custom", "menu", "items"],
+            only_return_number=False,
+            allowed_characters=["custom", "menu", "items"],
+            return_menu_item=True
+        )
+        
+        assert result == "custom"
+
+    @patch('builtins.input', return_value='custom')
+    @patch('builtins.print')
+    def test_block_menu_return_menu_item_string_choice_string(self, mock_print, mock_input):
         """Test block menu return_menu_item=True with string choice"""
         result = simple_console_menu_block(
             "Block Menu", 
