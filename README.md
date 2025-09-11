@@ -33,16 +33,16 @@ And if you want to use it you can do this:
 menu = Menu.simple_console_menu(menu_name: str, menu_items: list[str], input_question: str, menu_size: int = 76, auto_add_quit: bool = False, only_return_number: bool = True, allowed_characters: list[str] | str | None = None, accepted_quit_characters: str = '', return_menu_item: bool = False)
 ```
 
-With these parameters :
-    menu_name                - Required  : name of the menu (Str)
-    menu_items               - Required  : menu items ["item 1","item 2"] (List)
-    input_question           - Optional  : Question input (Str)
-    menu_size                - Optional  : Size of the menu (Int)
-    auto_add_quit            - Optional  : automatically add a quit option (Bool)
-    only_return_number       - Optional  : only numbers are allowed to return (Bool)
-    allowed_characters       - Optional  : specifier which character(s) are allowed if only_return_number is False, separated with ';' (str)
-    accepted_quit_characters - Optional  : specifier which character is allowed if only_return_number is False for quit (str)
-    return_menu_item         - Optional  : return the menu item instead of the number (Bool)
+With these parameters: <br>
+    menu_name                - Required  : name of the menu (Str) <br>
+    menu_items               - Required  : menu items ["item 1","item 2"] (List) <br>
+    input_question           - Optional  : Question input (Str) <br>
+    menu_size                - Optional  : Size of the menu (Int) <br>
+    auto_add_quit            - Optional  : automatically add a quit option (Bool) <br>
+    only_return_number       - Optional  : only numbers are allowed to return (Bool) <br>
+    allowed_characters       - Optional  : specifier which character(s) are allowed if only_return_number is False, separated with ';' (str) <br>
+    accepted_quit_characters - Optional  : specifier which character is allowed if only_return_number is False for quit (str) <br>
+    return_menu_item         - Optional  : return the menu item instead of the number (Bool) <br>
 
 full example:
 ```python
@@ -81,24 +81,21 @@ There is also `SimpleConsoleMenuBlock` which works the same as `SimpleConsoleMen
 
 ```
 ╭────────────────────────────────── menu ──────────────────────────────────╮
-│1. item1                                                                  │
-│2. item2                                                                  │
-│3. item3                                                                  │
-│4. item4                                                                  │
-│5. item5                                                                  │
-│6. Quit                                                                   │
+│1. item1                                                            │
+│2. item2                                                            │
+│3. item3                                                            │
+│4. item4                                                            │
+│5. item5                                                            │
+│6. Quit                                                             │
 ╰──────────────────────────────────────────────────────────────────────────╯
 Number:
 ```
-<sub>it looks correct in the python console</sub>
 
 You can also use the `menu` class like this:
 
 ```python
 from simple_console_menu import Menu
 
-example_menu = Menu.menu("Menu", ["item 1", "item 2", "item 3"])
-example_menu.display()
-user_input = example_menu.get_user_input()
+user_input = Menu.menu("Menu", ["item 1", "item 2", "item 3"]).display().get_user_input()
 print(user_input)
 ```
