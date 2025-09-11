@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: simple-console-menu
-Version: 0.2.1
+Version: 2.0.0
 Summary: A simple console menu
 Home-page: https://github.com/mikeee1/simple-console-menu
 Author: mikeee
@@ -13,6 +13,10 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Provides-Extra: test
+Requires-Dist: pytest>=6.0; extra == "test"
+Requires-Dist: pytest-mock>=3.0; extra == "test"
+Dynamic: license-file
 
 # Simple Consol Menu
 this module allows you to create simple console menu. <br>

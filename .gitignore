@@ -6,3 +6,4 @@ src/simple_console_menu.egg-info/
 **/__pycache__/
 html/
 md/
+.venv/
