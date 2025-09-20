@@ -71,7 +71,12 @@ def simple_console_menu(menu_name: str, menu_items: list[str], input_question: s
 
     while choose_loop:
         choose = input(input_question)
-        if only_return_number:
+        if return_menu_item:
+            if choose.isdigit():
+                choose_int = int(choose)
+                if 0 < choose_int <= len(menu_items_list):
+                    choose_loop = False     
+        elif only_return_number:
             if choose.isdigit():
                 choose_loop = False
         else:
@@ -89,7 +94,7 @@ def simple_console_menu(menu_name: str, menu_items: list[str], input_question: s
             for x in menu_items_list:
                 print(f'{menu_number}. {x}')
                 menu_number += 1
-            print(76*'-')
+            print(menu_size * '-')
             choose_amount = 1
         choose_amount += 1
 
@@ -193,7 +198,12 @@ def simple_console_menu_block(menu_name: str, menu_items: list[str], input_quest
 
     while choose_loop:
         choose = input(input_question)
-        if only_return_number:
+        if return_menu_item:
+            if choose.isdigit():
+                choose_int = int(choose)
+                if 0 < choose_int <= len(menu_items_list):
+                    choose_loop = False     
+        elif only_return_number:
             if choose.isdigit():
                 choose_loop = False
         else:
@@ -209,9 +219,10 @@ def simple_console_menu_block(menu_name: str, menu_items: list[str], input_quest
             _print_top_row_block(menu_name, menu_name_length, menu_size)
 
             for x in menu_items_list:
-                print(f'{menu_number}. {x}')
+                menu_items_with_numbers = str(menu_number)+'. '+x
+                print(f'│{menu_items_with_numbers}' + ((menu_size - 2) - len(menu_items_with_numbers)) * ' ' + '│')
                 menu_number += 1
-            print(76 * '-')
+            print('╰' + (menu_size - 2) * '─' + '╯')
             choose_amount = 1
         choose_amount += 1
     
@@ -473,3 +484,11 @@ def SimpleConsoleMenuBlock(menuName: str, menuItems: list, inputQuestion = "What
     Deprecated, use simple_console_menu instead
     """
     return simple_console_menu_block(menuName, menuItems, inputQuestion, menuSize, autoAddQuit, onlyReturnNumber, allowedCharacters, acceptedQuitCharacters, False)
+
+
+
+def main():
+    print(simple_console_menu_block("Main Menu", ["Option 1", "Option 2", "Option 3"], auto_add_quit=True, return_menu_item=True, menu_size=50))
+
+if __name__ == '__main__':
+    main()
