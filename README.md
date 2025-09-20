@@ -88,6 +88,7 @@ There is also `SimpleConsoleMenuBlock` which works the same as `SimpleConsoleMen
 │5. item5                                                            │
 │6. Quit                                                             │
 ╰──────────────────────────────────────────────────────────────────────────╯
+<sub>it looks correct in the console</sub>
 Number:
 ```
 
